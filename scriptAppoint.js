@@ -29,7 +29,7 @@ function mi_funcion()
 }
 // Inicializa el calendario agregando las fechas HTML
 function init_calendar(date) {
-	
+	$(".events-container").hide(250); 
 	$(".tbody").empty();//asignando a la clase tbody, una sentencia vacia, para guardar nuevos datos
 	$(".events-container").empty(); /* asignando a la clase events-container una sentencia vacia */
 	var calendar_days = $(".tbody"); // lo de la clase se agrega a la var.
@@ -90,6 +90,8 @@ function days_in_month(month, year) {
 
 //Controlador de eventos para cuando se hace clic en una fecha
 function date_click(event) {
+	$("#dialog").hide(250); //muestra el apartado de horario
+	$(".events-container").hide(250); // ocultar contendio
 	var datee = new Date(); // Date() imprime  la fecha actual hora y día.
 	var today = datee.getDate(); // se obtiene el día
 	var anio= datee.getFullYear();
@@ -151,7 +153,8 @@ function date_click(event) {
 // Controlador de eventos para cuando se hace clic en un mes
 function month_click(event) {
 	// event.data.mes: obtiene la ubicacion del mes: sep(8)
-	$(".events-container").show(250);
+	$(".horarios-container").show(250);
+	$(".events-container").hide(250);
 	$("#dialog").hide(250);
 	var date = event.data.date; // obtiene la fecha del ultimo dia del mes anterior
 	var mesAc = event.data.mes;// obtiene el mes actual, regresa un num
@@ -182,6 +185,7 @@ function month_click(event) {
 //Controlador de eventos para cuando se hace clic en el botón derecho del año
 function next_year(event, anio) {
 		$("#dialog").hide(250);
+	    $(".events-container").hide(250);
 		 var date =  event.data.date; //obtiene la fecha del ultimo día del mes anterior
 		//  window.alert(date);
 		 new_year =  date.getFullYear() + 1; // devuelve el año actaul, y se le agrega 1 para el proximo año
@@ -198,6 +202,7 @@ function next_year(event, anio) {
 // Controlador de eventos para cuando se hace clic en el botón izquierdo del año
 function prev_year(event, anio) {
 	$("#dialog").hide(250);
+	$(".events-container").hide(250);
 	var date = event.data.date; // obtiene la fecha del ultimo dia del mes anterior
 	new_year = date.getFullYear() - 1;// devuelve el año actaul, y se le le resta -1 para el año anterior
 	if (event.data.anio == new_year)
@@ -211,6 +216,7 @@ function prev_year(event, anio) {
 
 // Controlador de eventos para hacer clic en el botón del nuevo evento
 function new_event(event) {
+	$(".events-container").hide(250);
 	if ($(".active-date").length === 0){
 		window.alert("Elige una fecha, para tu cita");
 	}
@@ -275,7 +281,7 @@ function new_event_json(name, motCita, numeroT, date, day) {
 function show_events(events, month, day) {
 	// limpiar de datos los dos container
 	$(".events-container").empty(); /*  */
-	$(".events-container").show(250);
+	// $(".events-container").show(250);
 	 console.log(event_data["events"]);
 	// Si no hay eventos para esta fecha, notifique al usuario
 	if (events.length === 0) {
