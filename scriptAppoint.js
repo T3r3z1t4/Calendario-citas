@@ -23,10 +23,7 @@ $(document).ready(function () {
 	show_events(events, months[date.getMonth()], today );
 	
 });
-function mi_funcion()
-{
-	alert("Esta seguro de agendar su cita a esta hora");
-}
+
 // Inicializa el calendario agregando las fechas HTML
 function init_calendar(date) {
 	$(".events-container").hide(250); 
@@ -153,7 +150,7 @@ function date_click(event) {
 // Controlador de eventos para cuando se hace clic en un mes
 function month_click(event) {
 	// event.data.mes: obtiene la ubicacion del mes: sep(8)
-	$(".horarios-container").show(250);
+	// $(".horarios-container").show(250);
 	$(".events-container").hide(250);
 	$("#dialog").hide(250);
 	var date = event.data.date; // obtiene la fecha del ultimo dia del mes anterior
