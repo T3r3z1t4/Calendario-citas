@@ -5,11 +5,12 @@ $(document).ready(function () {
 	var mes = date.getMonth(); /* Obtiene el numero indicado del mes */
 	var anio= date.getFullYear();
 	var new_year = anio;
+	var d=0;
 	// Establecer controladores de clic para elementos DOM
 	$(".right-button").click({ date: date, anio}, next_year); /* obtiene el siguiente año */ 
 	$(".left-button").click({ date: date, anio}, prev_year); /* obtiene el el calendario de años anteriores */ 
 	$(".month").click({ date: date, mes, anio}, month_click);/* al darle clic en algunos de los meses */
-	$("#add-button").click({ date: date }, new_event); /* con el clic en el boton hace el llamado a una nuevo evento */
+	$("#add-button").click({ date: date,date }, new_event); /* con el clic en el boton hace el llamado a una nuevo evento */
 
 	// Establecer el mes actual como activo
 	$(".months-row").children().eq(date.getMonth()).addClass("active-month");/* activa el mes que estamos, selecciona getmonth */
@@ -133,8 +134,11 @@ function date_click(event) {
 			break;
 		
 	}	
-	//window.alert(event.data.day);
+	
+	d = event.data.day;
+	
 	if (event.data.day >= today || (m >= mes && m <= (mes + 2)) ){
+		
 		$(".active-date").removeClass("active-date");
 		$(this).addClass("active-date");
 		$(".horarios-container").show(250); //muestra el apartado de horario
@@ -212,7 +216,8 @@ function prev_year(event, anio) {
 }
 
 // Controlador de eventos para hacer clic en el botón del nuevo evento
-function new_event(event) {
+function new_event(event, date) {
+	window.alert(d); // la d es una variable obtenida desde cuando se le da  el clic
 	$(".events-container").hide(250);
 	if ($(".active-date").length === 0){
 		window.alert("Elige una fecha, para tu cita");
