@@ -122,54 +122,62 @@ include("conexion.php");
                     <tbody>
                         <tr class="horarios-row">   
                             <td class="hora">
-                                <button class="botonC" <?php echo $nueve;?>>9-10</button>
+                                <button class="botonC" onclick="obtenerHor(this)" id="9" <?php echo $nueve;?>>9-10</button>
                             </td>
                         </tr>
                         <tr class="horarios-row">
                             <td class="hora">
-                                <button class="botonC" <?php echo $diez;?>>10-11</button>
+                                <button class="botonC" onclick="obtenerHor(this)" id="10" <?php echo $diez;?>>10-11</button>
                             </td>
                         </tr>
                         <tr class="horarios-row">
                             <td class="hora">
-                                <button class="botonC" <?php echo $once;?>>11-12</button>
+                                <button class="botonC" onclick="obtenerHor(this)" id="11" <?php echo $once;?>>11-12</button>
                             </td>
                         </tr>
                         <tr class="horarios-row">
                             <td class="hora">
-                                <button class="botonC" <?php echo $doce;?>>12-1</button>
+                                <button class="botonC" onclick="obtenerHor(this)" id="12" <?php echo $doce;?>>12-1</button>
                             </td>
                         </tr>
                         <tr class="horarios-row">
                             <td class="hora">
-                                <button class="botonC" <?php echo $uno;?>>1-2</button>
+                                <button class="botonC" onclick="obtenerHor(this)" id="13" <?php echo $uno;?>>1-2</button>
                             </td>
                         </tr>
                         <tr class="horarios-row">
                             <td class="hora">
-                                <button class="botonC" <?php echo $cuatro;?>>4-5</button>
+                                <button class="botonC" onclick="obtenerHor(this)" id="16" <?php echo $cuatro;?>>4-5</button>
                             </td>
                         </tr>
                         <tr class="horarios-row">
                             <td class="hora">
-                                <button class="botonC" <?php echo $cinco;?>>5-6</button>
+                                <button class="botonC" onclick="obtenerHor(this)" id="17" <?php echo $cinco;?>>5-6</button>
                             </td>
                         </tr>
                         <tr class="horarios-row">
                             <td class="hora">
-                                <button class="botonC" <?php echo $seis;?>>6-7</button>
+                                <button class="botonC" onclick="obtenerHor(this)" id="18" <?php echo $seis;?>>6-7</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
 
-            <button class="button" id="add-button">Agregar cita</button>
+                <button class="button" id="add-button">Agregar cita</button>
             <!-- <button class="button" id="add-button">Agregar cita</button> -->
         </div>
         <div class="dialog" id="dialog">
             <h2 class="dialog-header"> Pedir cita </h2>
             <form class="form" id="form" action="principal.php" method="POST" >
                 <div class="form-container" align="center" > <!-- formulario  para la cita -->
+                    
+                    <label class="form-label" >Fecha de Cita: </label>
+                    <label class="form-label" id="fechaCita"></label><br>
+                    <!--<input type="text" id="fechaCita" name="fechaCita">-->
+                    <label class="form-label" ></label>Hora de Cita: </label>
+                    <label class="form-label" id="horaCita"></label><br><br>
+
+                    
                     <label class="form-label" id="valueFromMyButton" for="name"  >Nombre completo</label>
                     <input class="input" type="text" id="name" maxlength="36" name="nombre" >
                     <label class="form-label" id="valueFromMyButton" for="motivoC">Motivo de la cita</label>

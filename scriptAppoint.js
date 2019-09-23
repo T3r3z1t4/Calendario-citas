@@ -259,6 +259,8 @@ function new_event(event, date) {
 
 	var fechaCita =  a + "/" + m + "/" + d; //formato año/mes/dia
 
+	
+
 	document.getElementById('fechaCita').innerHTML = fechaCita;
 
 
