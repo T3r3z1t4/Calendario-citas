@@ -23,16 +23,6 @@ $(document).ready(function () {
 	show_events(events, months[date.getMonth()], today );
 	
 });
-function habilitarB($b){
-		switch ($b) {
-			case '9':
-				document.write($b);
-				break;
-			case '10':
-				//window.alert(b);
-				break;
-		}
-	}   
 
 // Inicializa el calendario agregando las fechas HTML
 function init_calendar(date) {
@@ -114,10 +104,10 @@ function date_click(event) {
 		case 'March':
 			m = 2;
 			break;
-		case 'April	':
+		case 'April':
 			m = 3;
 			break;
-		case 'May	':
+		case 'May':
 			m = 4;
 			break;
 		case 'June':
