@@ -217,7 +217,55 @@ function prev_year(event, anio) {
 
 // Controlador de eventos para hacer clic en el botón del nuevo evento
 function new_event(event, date) {
-	window.alert(d); // la d es una variable obtenida desde cuando se le da  el clic
+	
+	var date = event.data.date;
+	var a = date.getFullYear();
+	var m = date.getMonth();
+
+	switch(m){
+		case 0:
+			m = "01";
+			break; 
+		case 1:
+			m = "02";
+			break; 
+		case 2:
+			m = "03";
+			break; 
+		case 3:
+			m = "04";
+			break; 
+		case 4:
+			m = "05";
+			break; 
+		case 5:
+			m = "06";
+			break; 
+		case 6:
+			m = "07";
+			break; 
+		case 7:
+			m = "08";
+			break; 
+		case 8:
+			m = "09";
+			break; 
+		case 9:
+			m = "10";
+			break; 
+		case 10:
+			m = "11";
+			break; 
+		case 11:
+			m = "12";
+			break; 			
+	}
+
+	var fechaCita =  a + "/" + m + "/" + d; //formato año/mes/dia
+
+	document.getElementById('fechaCita').innerHTML = fechaCita;
+
+
 	$(".events-container").hide(250);
 	if ($(".active-date").length === 0){
 		window.alert("Elige una fecha, para tu cita");
@@ -428,3 +476,34 @@ const months = [
 	"November",
 	"December"
 ];
+
+function obtenerHor(h){
+
+    switch(h.id){
+		case "9":
+			document.getElementById('horaCita').innerHTML = "09-10";
+            break;
+        case "10":
+			document.getElementById('horaCita').innerHTML = "10-11";
+            break;
+        case "11":
+            document.getElementById('horaCita').innerHTML = "11-12";
+            break;
+        case "12":
+            document.getElementById('horaCita').innerHTML = "12-01";
+            break
+        case "13":
+            document.getElementById('horaCita').innerHTML = "01-02";
+            break;
+        case "16":
+            document.getElementById('horaCita').innerHTML = "04-05";
+            break;
+        case "17":
+            document.getElementById('horaCita').innerHTML = "05-06";
+			break;
+		case "18":
+			document.getElementById('horaCita').innerHTML = "06-07";
+			break;
+    
+    }
+}   

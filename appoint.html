@@ -61,47 +61,46 @@
                     <tbody>
                         <tr class="horarios-row">
                             <td class="hora">
-                                <button class="botonC" class="botonC" >9-10</button>
+                                <button class="botonC" onclick="obtenerHor(this)" id="9">9-10</button>
                             </td>
                         </tr>
                         <tr class="horarios-row">
                             <td class="hora">
-                                <button class="botonC" onclick="mi_funcion()" value="1">10-11</button>
+                                <button class="botonC" onclick="obtenerHor(this)" id="10">10-11</button>
                             </td>
                         </tr>
                         <tr class="horarios-row">
                             <td class="hora">
-                                <button class="botonC" onclick="mi_funcion()">11-12</button>
+                                <button class="botonC" onclick="obtenerHor(this)" id="11">11-12</button>
                             </td>
                         </tr>
                         <tr class="horarios-row">
                             <td class="hora">
-                                <button class="botonC" onclick="mi_funcion()">12-1</button>
+                                <button class="botonC" onclick="obtenerHor(this)" id="12">12-1</button>
                             </td>
                         </tr>
                         <tr class="horarios-row">
                             <td class="hora">
-                                <button class="botonC" onclick="mi_funcion()">1-2</button>
+                                <button class="botonC" onclick="obtenerHor(this)" id="13">1-2</button>
                             </td>
                         </tr>
                         <tr class="horarios-row">
                             <td class="hora">
-                                <button class="botonC" onclick="mi_funcion()">4-5</button>
+                                <button class="botonC" onclick="obtenerHor(this)" id="16">4-5</button>
                             </td>
                         </tr>
                         <tr class="horarios-row">
                             <td class="hora">
-                                <button class="botonC" onclick="mi_funcion()">5-6</button>
+                                <button class="botonC" onclick="mi_funcion(this)" id="17">5-6</button>
                             </td>
                         </tr>
                         <tr class="horarios-row">
                             <td class="hora">
-                                <button class="botonC" onclick="mi_funcion()">6-7</button>
+                                <button class="botonC" onclick="mi_funcion(this)" id="18">6-7</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-
             <button class="button" id="add-button">Agregar cita</button>
             <!-- <button class="button" id="add-button">Agregar cita</button> -->
         </div>
@@ -109,6 +108,13 @@
             <h2 class="dialog-header"> Pedir cita </h2>
             <form class="form" id="form" action="principal.php" method="POST" >
                 <div class="form-container" align="center" > <!-- formulario  para la cita -->
+                    <label class="form-label" >Fecha de Cita: </label>
+                    <label class="form-label" id="fechaCita"></label><br>
+                    <!--<input type="text" id="fechaCita" name="fechaCita">-->
+
+                    <label class="form-label" ></label>Hora de Cita: </label>
+                    <label class="form-label" id="horaCita"></label><br><br>
+
                     <label class="form-label" id="valueFromMyButton" for="name"  >Nombre completo</label>
                     <input class="input" type="text" id="name" maxlength="36" name="nombre" >
                     <label class="form-label" id="valueFromMyButton" for="motivoC">Motivo de la cita</label>
@@ -119,6 +125,7 @@
                     <input type="submit" value="OK" class="button" id="ok-button">
                 </div>
             </form>
+
         </div>
     </div>
     <!-- Dialog Box-->  
