@@ -5,7 +5,6 @@ $(document).ready(function () {
 	var mes = date.getMonth(); /* Obtiene el numero indicado del mes */
 	var anio= date.getFullYear();
 	var new_year = anio;
-	var d=0;
 	// Establecer controladores de clic para elementos DOM
 	$(".right-button").click({ date: date, anio}, next_year); /* obtiene el siguiente año */ 
 	$(".left-button").click({ date: date, anio}, prev_year); /* obtiene el el calendario de años anteriores */ 
@@ -24,6 +23,16 @@ $(document).ready(function () {
 	show_events(events, months[date.getMonth()], today );
 	
 });
+function habilitarB($b){
+		switch ($b) {
+			case '9':
+				document.write($b);
+				break;
+			case '10':
+				//window.alert(b);
+				break;
+		}
+	}   
 
 // Inicializa el calendario agregando las fechas HTML
 function init_calendar(date) {
@@ -136,9 +145,9 @@ function date_click(event) {
 	}	
 	
 	d = event.data.day;
-	
-	if (event.data.day >= today || (m >= mes && m <= (mes + 2)) ){
-		
+
+	if ((event.data.day >= today) || m <= (mes + 2) ){
+		// event.data.day >= today || (m >= mes && m <= (mes + 2)
 		$(".active-date").removeClass("active-date");
 		$(this).addClass("active-date");
 		$(".horarios-container").show(250); //muestra el apartado de horario
