@@ -143,22 +143,18 @@ function date_click(event) {
 			break;
 		
 	}	
-	
-	d = event.data.day;
-
-	if ((event.data.day >= today) || m <= (mes + 2) ){
-		// event.data.day >= today || (m >= mes && m <= (mes + 2)
-		$(".active-date").removeClass("active-date");
-		$(this).addClass("active-date");
-		$(".horarios-container").show(250); //muestra el apartado de horario
-		$(".events-container").hide(250); // ocultar contendio
+	if (m >= mes && m <= (mes + 2)) {
+		if (event.data.day < today && mes == m) {
+			window.alert("la fecha elegida no es apto" + today);
+			$(".horarios-container").hide(250);
+		} else {
+			$(".active-date").removeClass("active-date");
+			$(this).addClass("active-date");
+			$(".horarios-container").show(250); //muestra el apartado de horario
+			$(".events-container").hide(250); // ocultar contendio
+		}
 	}
-	else{
-		window.alert("la fecha elegida no es apto" + today);
-		$(".horarios-container").hide(250);
-
-	}
-};
+}
 
 // Controlador de eventos para cuando se hace clic en un mes
 function month_click(event) {
