@@ -267,9 +267,7 @@ function new_event(event, date) {
 			break; 			
 	}
 
-	var fechaCita =  a + "/" + m + "/" + d; //formato año/mes/dia
-
-	
+	var fechaCita =  a + "/" + m + "/" + d; //formato año/mes/dia	
 
 	document.getElementById('fechaCita').innerHTML = fechaCita;
 
