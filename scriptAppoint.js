@@ -142,7 +142,8 @@ function date_click(event) {
 			m = 11;
 			break;
 		
-	}	
+	}
+	d = event.data.day;	
 	if (m >= mes && m <= (mes + 2)) {
 		if (event.data.day < today && mes == m) {
 			window.alert("la fecha elegida no es apto" + today);
@@ -154,7 +155,7 @@ function date_click(event) {
 			$(".events-container").hide(250); // ocultar contendio
 		}
 	}
-}
+};
 
 // Controlador de eventos para cuando se hace clic en un mes
 function month_click(event) {
