@@ -117,7 +117,7 @@ include("conexion.php");
         <div class="events-container"> <!-- Aqui es donde se se ve el texto de que no hay act -->
         </div> 
         <div class="horarios-container" id="semana">
-            <h2 class="horarios-header"> Horarios disponibles para la citas </h2>
+            <h2 class="horarios-header"> Horarios</h2>
                 <table class="horarios-table">
                     <tbody>
                         <tr class="horarios-row">   

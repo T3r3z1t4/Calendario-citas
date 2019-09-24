@@ -6,7 +6,7 @@
     height: 500px; /* medida de altura */
     position: relative; /* solo se mueve de arriba hacia abjo */
     margin: 20px auto;
-    background:#f8fcfa; /* color de la caja, que esta al lado del appointio */
+    background:#fcf9f9; /* color de la caja, que esta al lado del appointio */
     box-shadow: 3px 8px 16px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     -moz-box-shadow: 3px 8px 16px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     -webkit-box-shadow: 3px 8px 16px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
@@ -64,14 +64,14 @@
 /* Boton */
 .botonC {
     background-color:#026353;
-	width:150px;
+	width:150px; 
 	display:inline-block;
 	font-family: 'Open Sans', sans-serif;
     font-size:12px;
-    margin-left: 100px;
+    margin-left: 120px; 
 	color:#fff;
-	position:relative;
-	/* margin-top:40px; */
+    position:relative;
+    text-align: center;
 	padding-bottom:10px;
 	padding-top:10px;
 	-webkit-border-bottom-right-radius: 5px;
@@ -107,10 +107,21 @@
 #add-button {
     display: block;
     position: absolute;
-    right:20px;
+    margin-left: 125px;
+    /* right:150px; */
     bottom: 20px;
 }
-
+.horarios-header { 
+    background:#0bb142;
+    font-family: Helvetica;
+    height: 40px; 
+    width: 401px;
+    text-align: center;
+    position: relative; 
+    color:white; 
+    bottom: 20px;
+    /* border-top-left-radius: 3px; */
+}
 
 #add-button:hover, #ok-button:hover, #cancel-button:hover {
     transform: scale(1.03);
@@ -233,7 +244,7 @@
     border-color: #FF1744;
 }
 .horarios-container {
-    display: none;
+    display: inline-block;
 }
 /* Tablets and smaller */
 @media only screen and (max-width: 780px) {
