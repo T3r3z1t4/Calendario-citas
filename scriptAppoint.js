@@ -481,7 +481,7 @@ function obtenerHor(h){
 
     switch(h.id){
 		case "9":
-			
+			Window.alert("fvfdvzdfvxfbg");
             break;
         case "10":
 			document.getElementById('horaCita').innerHTML = "10-11";
