@@ -476,12 +476,13 @@ const months = [
 	"November",
 	"December"
 ];
+	
 
-function obtenerHor(h){
+function obtenerHor(h,id){
 
     switch(h.id){
 		case "9":
-			Window.alert("fvfdvzdfvxfbg");
+			document.getElementById('horaCita').innerHTML = "9-10";
             break;
         case "10":
 			document.getElementById('horaCita').innerHTML = "10-11";

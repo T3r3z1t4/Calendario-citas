@@ -94,12 +94,13 @@
     -moz-appearance: none;
     appearance: none;
     outline: none;
-    font-size: 1rem;
+    /* font-size: 1rem; */
     border-radius: 25px;
     padding: 0.65rem 1.9rem;
     transition: .2s ease all;
     color: white;
     border: none;
+    bottom: 20px;
     box-shadow: 0 2px 6px RGBA(255, 50, 120, .9); 
     background:#88041a;
 }
