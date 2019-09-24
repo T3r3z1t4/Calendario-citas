@@ -87,6 +87,8 @@ function days_in_month(month, year) {
 
 //Controlador de eventos para cuando se hace clic en una fecha
 function date_click(event) {
+	document.getElementById('horaCita').innerHTML = "";//limpiar hora
+
 	$("#dialog").hide(250); //muestra el apartado de horario
 	$(".events-container").hide(250); // ocultar contendio
 	var datee = new Date(); // Date() imprime  la fecha actual hora y día.
@@ -286,9 +288,11 @@ function new_event(event, date) {
 		$("#numer").removeClass("error-input");
 		$("#dialog").hide(250);
 		$(".events-container").show(250);
+		document.getElementById('horaCita').innerHTML = "";//limpiar hora
 		});
 		// Controlador de eventos para el botón ok
 		$("#ok-button").unbind().click({ date: event.data.date }, function () {
+
 			var date = event.data.date;
 			
 			var name = $("#name").val().trim();
@@ -477,7 +481,7 @@ function obtenerHor(h){
 
     switch(h.id){
 		case "9":
-			document.getElementById('horaCita').innerHTML = "09-10";
+			Window.alert("fvfdvzdfvxfbg");
             break;
         case "10":
 			document.getElementById('horaCita').innerHTML = "10-11";
