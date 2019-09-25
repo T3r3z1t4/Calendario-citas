@@ -10,6 +10,14 @@ include("conexion.php");
     $cuatro= FALSE;
     $cinco= FALSE;
     $seis= FALSE;
+    $col9='#026353';
+    $col10='#026353';
+    $col11='#026353';
+    $col12='#026353';
+    $col1='#026353';
+    $col4='#026353';
+    $col5='#026353';
+    $col6='#026353';
 
    if($query2){
         while($fila=mysqli_fetch_array($query2)){
@@ -20,35 +28,43 @@ include("conexion.php");
             switch ($r) {
             case '9-10':
                 $nueve= 'disabled';
+                $col9='#FF9900';
                 echo 'nueve';
 				break;
             case '10-11':
                 echo 'diez';
                 $diez= 'disabled';
+                $col10= '#FF9900';
                 break;
             case '11-12':
                 echo 'once';
                 $once= 'disabled';
+                $col11='#FF9900';
 				break;
             case '12-13':
                 echo 'doce';
                 $doce= 'disabled';
+                $col12='#FF9900';
                 break;
             case '13-14':
                 echo 'uno';
                 $uno= 'disabled';
+                $col1='#FF9900';
 				break;
             case '16-17':
                 $cuatro= 'disabled';
+                $col4='#FF9900';
                 echo 'cuatro';
                 break;
             case '17-18':
                 echo 'cinco';
                 $cinco= 'disabled';
+                $col5='#FF9900';
                 break;
             case '18-19':
                 echo 'seis';
                 $seis= 'disabled';
+                $col6='#FF9900';
 				break;
 		}     
         }
@@ -64,10 +80,6 @@ include("conexion.php");
     <meta name="description" content="Calendar">
     <meta name="author" content="Charles Anderson">
     <link rel="stylesheet" href="styleAppoint.css">
-    
-    <script>
-    alert(variablemm);
-    </script>
 </head>
 
 <body>
@@ -122,49 +134,48 @@ include("conexion.php");
                     <tbody>
                         <tr class="horarios-row">   
                             <td class="hora">
-                                <button class="botonC" onclick="obtenerHor(this)" id="9" <?php echo $nueve;?>>9-10</button>
+                                <button class="botonC" onclick="obtenerHor(this)" id="9" style="background-color:<?php echo $col9;?>"  <?php echo $nueve;?>>9-10</button>
                             </td>
                         </tr>
                         <tr class="horarios-row">
                             <td class="hora">
-                                <button class="botonC" onclick="obtenerHor(this)" id="10" <?php echo $diez;?>>10-11</button>
+                                <button class="botonC"  onclick="obtenerHor(this)" id="10" style="background-color:<?php echo $col10;?>" <?php echo $diez;?>>10-11</button>
                             </td>
                         </tr>
                         <tr class="horarios-row">
                             <td class="hora">
-                                <button class="botonC" onclick="obtenerHor(this)" id="11" <?php echo $once;?>>11-12</button>
+                                <button class="botonC" onclick="obtenerHor(this)" id="11" style="background-color:<?php echo $col11;?>" <?php echo $once;?>>11-12</button>
                             </td>
                         </tr>
                         <tr class="horarios-row">
                             <td class="hora">
-                                <button class="botonC" onclick="obtenerHor(this)" id="12" <?php echo $doce;?>>12-1</button>
+                                <button class="botonC" onclick="obtenerHor(this)" id="12" style="background-color:<?php echo $col12;?>" <?php echo $doce;?>>12-1</button>
                             </td>
                         </tr>
                         <tr class="horarios-row">
                             <td class="hora">
-                                <button class="botonC" onclick="obtenerHor(this)" id="13" <?php echo $uno;?>>1-2</button>
+                                <button class="botonC" onclick="obtenerHor(this)" id="13" style="background-color:<?php echo $col1;?>" <?php echo $uno;?>>1-2</button>
                             </td>
                         </tr>
                         <tr class="horarios-row">
                             <td class="hora">
-                                <button class="botonC" onclick="obtenerHor(this)" id="16" <?php echo $cuatro;?>>4-5</button>
+                                <button class="botonC" onclick="obtenerHor(this)" id="16" style="background-color:<?php echo $col4;?>" <?php echo $cuatro;?>>4-5</button>
                             </td>
                         </tr>
                         <tr class="horarios-row">
                             <td class="hora">
-                                <button class="botonC" onclick="obtenerHor(this)" id="17" <?php echo $cinco;?>>5-6</button>
+                                <button class="botonC" onclick="obtenerHor(this)" id="17" style="background-color:<?php echo $col5;?>" <?php echo $cinco;?>>5-6</button>
                             </td>
                         </tr>
                         <tr class="horarios-row">
                             <td class="hora">
-                                <button class="botonC" onclick="obtenerHor(this)" id="18" <?php echo $seis;?>>6-7</button>
+                                <button class="botonC" onclick="obtenerHor(this)" id="18" style="background-color:<?php echo $col6;?>" <?php echo $seis;?>>6-7</button>
                             </td>
                         </tr>
                     </tbody>
                 </table>
-
                 <button class="button" id="add-button">Agregar cita</button>
-            <!-- <button class="button" id="add-button">Agregar cita</button> -->
+
         </div>
         <div class="dialog" id="dialog">
             <h2 class="dialog-header"> Pedir cita </h2>
