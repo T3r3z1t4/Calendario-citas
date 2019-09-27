@@ -6,7 +6,7 @@
     height: 500px; /* medida de altura */
     position: relative; /* solo se mueve de arriba hacia abjo */
     margin: 20px auto;
-    background:#fcf9f9; /* color de la caja, que esta al lado del appointio */
+    background:rgb(255, 255, 255); /* color de la caja, que esta al lado del appointio */
     box-shadow: 3px 8px 16px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     -moz-box-shadow: 3px 8px 16px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
     -webkit-box-shadow: 3px 8px 16px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
@@ -17,7 +17,7 @@
     position: relative;
     margin: 0px auto; 
     height: 100%;
-    background: #fff;
+    background: rgb(255, 255, 255);
     font: 13px Helvetica, Arial, san-serif; 
     display: inline-block; 
     border-bottom-left-radius: 3px;
@@ -116,7 +116,7 @@
     background:#077c2e;
     font-family: Helvetica;
     height: 40px; 
-    width: 401px;
+    width: 398px;
     text-align: center;
     position: relative; 
     color:white; 

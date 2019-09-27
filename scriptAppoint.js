@@ -21,6 +21,8 @@ $(document).ready(function () {
 
 	/* refleja los eventos llevados acabo */
 	show_events(events, months[date.getMonth()], today );
+	/* manda a llamar a una funcion */
+
 	
 });
 
@@ -244,6 +246,7 @@ function new_event(event, date) {
 			break; 
 		case 7:
 			m = "08";
+			window.alert("dhh");
 			break; 
 		case 8:
 			m = "09";
@@ -259,9 +262,10 @@ function new_event(event, date) {
 			break; 			
 	}
 
-	var fechaCita =  a + "/" + m + "/" + d; //formato año/mes/dia	
+	// var fechaCita =  a + "/" + m + "/" + d; //formato año/mes/dia	
+		
 
-	document.getElementById('fechaCita').innerHTML = fechaCita;
+	// document.getElementById('fechaCita').innerHTML = fechaCita;
 
 
 	$(".events-container").hide(250);
@@ -476,35 +480,36 @@ const months = [
 	"November",
 	"December"
 ];
-	
 
-function obtenerHor(h,id){
-
-    switch(h.id){
-		case "9":
-			document.getElementById('horaCita').innerHTML = "9-10";
-            break;
-        case "10":
-			document.getElementById('horaCita').innerHTML = "10-11";
-            break;
-        case "11":
-            document.getElementById('horaCita').innerHTML = "11-12";
-            break;
-        case "12":
-            document.getElementById('horaCita').innerHTML = "12-01";
-            break
-        case "13":
-            document.getElementById('horaCita').innerHTML = "01-02";
-            break;
-        case "16":
-            document.getElementById('horaCita').innerHTML = "04-05";
-            break;
-        case "17":
-            document.getElementById('horaCita').innerHTML = "05-06";
-			break;
-		case "18":
-			document.getElementById('horaCita').innerHTML = "06-07";
-			break;
+// function obtenerHor( ){
+// 	window.alert("Hola tio");
+// 	window.alert("Elige una fecha, para tu cita");
+    // switch(h.id){
+	// 	case "9":
+			
+		// 	document.getElementById('horaCita').innerHTML = "9-10";
+        //     break;
+        // case "10":
+		// 	document.getElementById('horaCita').innerHTML = "10-11";
+        //     break;
+        // case "11":
+        //     document.getElementById('horaCita').innerHTML = "11-12";
+        //     break;
+        // case "12":
+        //     document.getElementById('horaCita').innerHTML = "12-01";
+        //     break
+        // case "13":
+        //     document.getElementById('horaCita').innerHTML = "01-02";
+        //     break;
+        // case "16":
+        //     document.getElementById('horaCita').innerHTML = "04-05";
+        //     break;
+        // case "17":
+        //     document.getElementById('horaCita').innerHTML = "05-06";
+		// 	break;
+		// case "18":
+		// 	document.getElementById('horaCita').innerHTML = "06-07";
+		// 	break;
     
-    }
-}   
+    // }
+// }   

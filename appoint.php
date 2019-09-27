@@ -28,43 +28,43 @@ include("conexion.php");
             switch ($r) {
             case '9-10':
                 $nueve= 'disabled';
-                $col9='#FF9900';
+                $col9='#ee1111';
                 echo 'nueve';
 				break;
             case '10-11':
                 echo 'diez';
                 $diez= 'disabled';
-                $col10= '#FF9900';
+                $col10= '#ee1111';
                 break;
             case '11-12':
                 echo 'once';
                 $once= 'disabled';
-                $col11='#FF9900';
+                $col11='#ee1111';
 				break;
             case '12-13':
                 echo 'doce';
                 $doce= 'disabled';
-                $col12='#FF9900';
+                $col12='#ee1111';
                 break;
             case '13-14':
                 echo 'uno';
                 $uno= 'disabled';
-                $col1='#FF9900';
+                $col1='#ee1111';
 				break;
             case '16-17':
                 $cuatro= 'disabled';
-                $col4='#FF9900';
+                $col4='#ee1111';
                 echo 'cuatro';
                 break;
             case '17-18':
                 echo 'cinco';
                 $cinco= 'disabled';
-                $col5='#FF9900';
+                $col5='#ee1111';
                 break;
             case '18-19':
                 echo 'seis';
                 $seis= 'disabled';
-                $col6='#FF9900';
+                $col6='#ee1111';
 				break;
 		}     
         }
@@ -134,10 +134,10 @@ include("conexion.php");
                     <tbody>
                         <tr class="horarios-row">   
                             <td class="hora">
-                                <button class="botonC" onclick="obtenerHor(this)" id="9" style="background-color:<?php echo $col9;?>"  <?php echo $nueve;?>>9-10</button>
+                                <button class="botonC"  id="9" style="background-color:<?php echo $col9;?>"  <?php echo $nueve;?>>9-10</button>
                             </td>
                         </tr>
-                        <tr class="horarios-row">
+                        <!-- <tr class="horarios-row">
                             <td class="hora">
                                 <button class="botonC"  onclick="obtenerHor(this)" id="10" style="background-color:<?php echo $col10;?>" <?php echo $diez;?>>10-11</button>
                             </td>
@@ -171,7 +171,7 @@ include("conexion.php");
                             <td class="hora">
                                 <button class="botonC" onclick="obtenerHor(this)" id="18" style="background-color:<?php echo $col6;?>" <?php echo $seis;?>>6-7</button>
                             </td>
-                        </tr>
+                        </tr> -->
                     </tbody>
                 </table>
                 <button class="button" id="add-button">Agregar cita</button>
