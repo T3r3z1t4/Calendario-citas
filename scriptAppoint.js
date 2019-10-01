@@ -10,7 +10,6 @@ $(document).ready(function () {
 	$(".left-button").click({ date: date, anio}, prev_year); /* obtiene el el calendario de años anteriores */ 
 	$(".month").click({ date: date, mes, anio}, month_click);/* al darle clic en algunos de los meses */
 	$("#add-button").click({ date: date,date }, new_event); /* con el clic en el boton hace el llamado a una nuevo evento */
-
 	// Establecer el mes actual como activo
 	$(".months-row").children().eq(date.getMonth()).addClass("active-month");/* activa el mes que estamos, selecciona getmonth */
 	init_calendar(date);/* inicia  el calendario con la fecha ultima del mes anterior */
@@ -18,10 +17,9 @@ $(document).ready(function () {
 	 un numero del mes+1, date.getFullYear obtiene el año actual*/
 	/* date.getFullYear: obtiene el año: 2019, date.getMonth() + 1: obtiene 8 que es sep */
 	var events = check_events(today, date.getMonth() + 1, date.getFullYear()); // 
-
 	/* refleja los eventos llevados acabo */
 	show_events(events, months[date.getMonth()], today );
-	
+	/* manda a llamar a una funcion */
 });
 
 // Inicializa el calendario agregando las fechas HTML
@@ -87,7 +85,7 @@ function days_in_month(month, year) {
 
 //Controlador de eventos para cuando se hace clic en una fecha
 function date_click(event) {
-	document.getElementById('horaCita').innerHTML = "";//limpiar hora
+	//document.getElementById('horaCita').innerHTML = "";//limpiar hora  hecho por evelyn
 
 	$("#dialog").hide(250); //muestra el apartado de horario
 	$(".events-container").hide(250); // ocultar contendio
@@ -138,7 +136,7 @@ function date_click(event) {
 	d = event.data.day;	
 	if (m >= mes && m <= (mes + 2)) {
 		if (event.data.day < today && mes == m) {
-			window.alert("la fecha elegida no es apto" + today);
+			window.alert("Fecha invalida");
 			$(".horarios-container").hide(250);
 		} else {
 			$(".active-date").removeClass("active-date");
@@ -151,8 +149,6 @@ function date_click(event) {
 
 // Controlador de eventos para cuando se hace clic en un mes
 function month_click(event) {
-	// event.data.mes: obtiene la ubicacion del mes: sep(8)
-	// $(".horarios-container").show(250);
 	$(".events-container").hide(250);
 	$("#dialog").hide(250);
 	var date = event.data.date; // obtiene la fecha del ultimo dia del mes anterior
@@ -167,7 +163,7 @@ function month_click(event) {
 			date.setMonth(new_month); // se le asigna al dato al mes nuevo
 			init_calendar(date); //inicia el calendario con la fecha propor
 		}else{
-			window.alert("No puedes seleccionar otro mes");
+			window.alert("Mes no disponible");
 
 		}
 	} else if (new_month >= mesAc && new_month<= (mesAc + 2) && ahioSel==ahioAc) {
@@ -177,7 +173,7 @@ function month_click(event) {
 		init_calendar(date); //inicia el calendario con la fecha propor
 	}
 	else {
-		window.alert("no puedes otro mes, lo sentimos");
+		window.alert("Mes no disponible");
 	} 
 }
 
@@ -186,7 +182,6 @@ function next_year(event, anio) {
 		$("#dialog").hide(250);
 	    $(".events-container").hide(250);
 		 var date =  event.data.date; //obtiene la fecha del ultimo día del mes anterior
-		//  window.alert(date);
 		 new_year =  date.getFullYear() + 1; // devuelve el año actaul, y se le agrega 1 para el proximo año
 		 if ((event.data.anio + 1) == new_year) {
 			$(".year").html(new_year); // se le agrega e texto a la clase
@@ -194,7 +189,7 @@ function next_year(event, anio) {
 			init_calendar(date);// el calendario se inicia con el ultimo dia del mes anterio
 		}
 		else{
-			window.alert("Solo puede ver hasta este año");
+			window.alert("Año no disponible");
 		}		
 }
 
@@ -215,11 +210,12 @@ function prev_year(event, anio) {
 
 // Controlador de eventos para hacer clic en el botón del nuevo evento
 function new_event(event, date) {
-	
 	var date = event.data.date;
 	var a = date.getFullYear();
 	var m = date.getMonth();
-
+	$(".horarios-container").hide(250);
+	$(".events-container").hide(250);
+	$(".dialog").show(250); // muestra el contenedor para requisitar la cita
 	switch(m){
 		case 0:
 			m = "01";
@@ -259,73 +255,50 @@ function new_event(event, date) {
 			break; 			
 	}
 
-	var fechaCita =  a + "/" + m + "/" + d; //formato año/mes/dia	
+	 var fechaCita =  a + "/" + m + "/" + d; //formato año/mes/dia	 hecho por evelyn
+	 document.getElementById('fechaId').value = fechaCita;
 
-	document.getElementById('fechaCita').innerHTML = fechaCita;
 
+	// document.getElementById('fechaCita').innerHTML = fechaCita; // hecho por evelyn
 
-	$(".events-container").hide(250);
-	if ($(".active-date").length === 0){
-		window.alert("Elige una fecha, para tu cita");
-	}
-	else{		
-		// eliminar la entrada de error roja al hacer cli
-		$("input").click(function () {
-		$(this).removeClass("error-input");
-		})
-		// entradas vacías y ocultar eventos
-		$("#dialog input[type=text]").val(''); /* val devuelve el contenido */
-		$("#dialog input[type=text]").val('');
-		$("#dialog input[type=tel]").val('');
-		$(".events-container").hide(250);
-		$(".horarios-container").hide(250);
-		$("#dialog").show(250);
-		$(".events-container").hide(250);
-		// Controlador de eventos para el botón cancelar
-		$("#cancel-button").click(function () {
-		$("#name").removeClass("error-input");
-		$("#cita").removeClass("error-input");
-		$("#numer").removeClass("error-input");
-		$("#dialog").hide(250);
-		$(".events-container").show(250);
-		document.getElementById('horaCita').innerHTML = "";//limpiar hora
-		});
+	
+	// document.getElementById('horaCita').innerHTML = "";//limpiar por eve
 		// Controlador de eventos para el botón ok
-		$("#ok-button").unbind().click({ date: event.data.date }, function () {
+		// $("#ok-button").unbind().click({ date: event.data.date }, function () {
 
-			var date = event.data.date;
+		// 	var date = event.data.date;
 			
-			var name = $("#name").val().trim();
-			var motCita = $("#cita").val().trim();
-			var numeroT = parseInt($("#numer").val().trim());
-			// window.alert("mi nombre es"+name.length+"motivo de la cita"+motCita.length+"numero telefonico"+numeroT.length);
-			if (name.length > 0 && motCita.length > 0 && numeroT>0)
-			{
-				$("#dialog").hide(250);
-				console.log("new event");
-				new_event_json(name, motCita, numeroT, date, day);
-				date.setDate(day);
-				init_calendar(date);
-			}
-			else {
-				window.alert("Rebice que no tiene todos los campos contestados");
-			}	
+		// 	var name = $("#name").val().trim();
+		// 	var motCita = $("#cita").val().trim();
+		// 	var numeroT = parseInt($("#numer").val().trim());
+		// 	// window.alert("mi nombre es"+name.length+"motivo de la cita"+motCita.length+"numero telefonico"+numeroT.length);
+		// 	if (name.length > 0 && motCita.length > 0 && numeroT>0)
+		// 	{
+		// 		$("#dialog").hide(250);
+		// 		console.log("new event");
+		// 		new_event_json(name, motCita, numeroT, date, day);
+		// 		date.setDate(day);
+		// 		init_calendar(date);
+		// 	}
+		// 	else {
+		// 		window.alert("Rebice que no tiene todos los campos contestados");
+		// 	}	
 			
-		});
-	}	
+		// });
+	// }	
 }
 
 // Adds a json event to event_data
-function new_event_json(name, motCita, numeroT, date, day) {
-	var event = {
-		"occasion": name,
-		"invited_count": count,
-		"year": date.getFullYear(),
-		"month": date.getMonth() + 1,
-		"day": day
-	};
-	event_data["events"].push(event);
-}
+// function new_event_json(name, motCita, numeroT, date, day) {
+// 	var event = {
+// 		"occasion": name,
+// 		"invited_count": count,
+// 		"year": date.getFullYear(),
+// 		"month": date.getMonth() + 1,
+// 		"day": day
+// 	};
+// 	event_data["events"].push(event);
+// }
 
 // Mostrar todos los eventos de la fecha seleccionada en vistas de tarjeta
 function show_events(events, month, day) {
@@ -476,38 +449,48 @@ const months = [
 	"November",
 	"December"
 ];
+// $(document).ready(function () {
+// 	$("#hora").click(obtenerHor () {
+// 		//saco el valor accediendo a un input de tipo text y name = nombre2 y lo asigno a uno con name = nombre3 
+// 		$("#hora").val($(".botonC").val('9'));
+// 	});
+// });
+function obtenerHor(id){
 	
-
-function obtenerHor(h,id){
-
-    switch(h.id){
+    switch(id){
 		case "9":
-			var hr = "9-10";
-			window.onload = function(){
-			document.getElementById('hra').value = hr;
-		};
-			break;
+			// document.getElementById('hora').innerHTML = '9-10';
+			//document.getElementsById('name').innerHTML = '9-10';
+			//$("#hora").val(id);
+			//alert($("#hora").val('9'));
+			//document.form.fecha.innerHTML = id;
+			//document.form.hora.value = 9; 
+			//var txt = document.getElementById('hora').value;
+			//document.getElementById('fecha').innerHTML = '9-8';
+			// window.alert(id);
+			document.getElementById('horaId').value = '9-19';
+            break;
         case "10":
-			document.getElementById('horaCita').innerHTML = "10-11";
+			document.getElementById('horaId').value = '10-11';
             break;
         case "11":
-            document.getElementById('horaCita').innerHTML = "11-12";
+			document.getElementById('horaId').value = '11-12';
             break;
         case "12":
-            document.getElementById('horaCita').innerHTML = "12-01";
+			document.getElementById('horaId').value = "12-01";
             break
         case "13":
-            document.getElementById('horaCita').innerHTML = "01-02";
+			document.getElementById('horaId').value = "01-02";
             break;
         case "16":
-            document.getElementById('horaCita').innerHTML = "04-05";
+			document.getElementById('horaId').value = "04-05";
             break;
         case "17":
-            document.getElementById('horaCita').innerHTML = "05-06";
+			document.getElementById('horaId').value = "05-06";
 			break;
 		case "18":
-			document.getElementById('horaCita').innerHTML = "06-07";
+			document.getElementById('horaId').value = "06-07";
 			break;
     
-    }
+	}
 }   

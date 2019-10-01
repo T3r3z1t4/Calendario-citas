@@ -8,9 +8,9 @@
     $mysqli = new mysqli($server, $user, $pass, $db);
 
     if($mysqli->connect_errno){
-        echo "no conectado";
+        // echo "no conectado";
     }else{
-        //echo "conectado -> ";
+        // echo "conectado -> ";
     }
 
     
