@@ -1,6 +1,10 @@
  <?php
 include("conexion.php");
-    $consulta= "SELECT horario FROM clientes where Fecha LIKE '2019-09-18' ";
+
+  /*  $conIglesia = "SELECT nombre FROM iglesia;";
+    $result = mysqli_query($mysqli, $conIglesia);*/
+
+    $consulta= "SELECT horario FROM cita where fecha LIKE '2019-09-26';";
     $query2 = mysqli_query($mysqli,$consulta);
     $nueve= FALSE;
     $diez= FALSE;
@@ -10,44 +14,40 @@ include("conexion.php");
     $cuatro= FALSE;
     $cinco= FALSE;
     $seis= FALSE;
+ 
 
+    
+
+    //obtener integrantes de la iglesia seleccionada
+    $query_integrante = "SELECT nombre FROM integrante WHERE idIglesia=1";
+    $queryIntegrante = mysqli_query($mysqli,$query_integrante);                 
+    
    if($query2){
         while($fila=mysqli_fetch_array($query2)){
             $r=$fila['horario'];
-            echo "<tr>";
-            echo "<td>$fila[horario] </td><br>";
-            echo "<tr>";
             switch ($r) {
             case '9-10':
                 $nueve= 'disabled';
-                echo 'nueve';
 				break;
             case '10-11':
-                echo 'diez';
                 $diez= 'disabled';
                 break;
             case '11-12':
-                echo 'once';
                 $once= 'disabled';
 				break;
             case '12-13':
-                echo 'doce';
                 $doce= 'disabled';
                 break;
             case '13-14':
-                echo 'uno';
                 $uno= 'disabled';
 				break;
             case '16-17':
                 $cuatro= 'disabled';
-                echo 'cuatro';
                 break;
             case '17-18':
-                echo 'cinco';
                 $cinco= 'disabled';
                 break;
             case '18-19':
-                echo 'seis';
                 $seis= 'disabled';
 				break;
 		}     
@@ -56,6 +56,7 @@ include("conexion.php");
         echo 'no';
     }
 ?>
+
 <html lang="en">
 
 <head>
@@ -71,7 +72,7 @@ include("conexion.php");
 </head>
 
 <body>
-    <div class="content">
+    <div class="content" id="contenedor">
         <div class="appoint-container">
             <div class="appoint">
                 <div class="year-header">
@@ -117,51 +118,80 @@ include("conexion.php");
         <div class="events-container"> <!-- Aqui es donde se se ve el texto de que no hay act -->
         </div> 
         <div class="horarios-container" id="semana">
-            <h2 class="horarios-header"> Horarios</h2>
-                <table class="horarios-table">
-                    <tbody>
-                        <tr class="horarios-row">   
-                            <td class="hora">
-                                <button class="botonC" onclick="obtenerHor(this)" id="9" <?php echo $nueve;?>>9-10</button>
-                            </td>
-                        </tr>
-                        <tr class="horarios-row">
-                            <td class="hora">
-                                <button class="botonC" onclick="obtenerHor(this)" id="10" <?php echo $diez;?>>10-11</button>
-                            </td>
-                        </tr>
-                        <tr class="horarios-row">
-                            <td class="hora">
-                                <button class="botonC" onclick="obtenerHor(this)" id="11" <?php echo $once;?>>11-12</button>
-                            </td>
-                        </tr>
-                        <tr class="horarios-row">
-                            <td class="hora">
-                                <button class="botonC" onclick="obtenerHor(this)" id="12" <?php echo $doce;?>>12-1</button>
-                            </td>
-                        </tr>
-                        <tr class="horarios-row">
-                            <td class="hora">
-                                <button class="botonC" onclick="obtenerHor(this)" id="13" <?php echo $uno;?>>1-2</button>
-                            </td>
-                        </tr>
-                        <tr class="horarios-row">
-                            <td class="hora">
-                                <button class="botonC" onclick="obtenerHor(this)" id="16" <?php echo $cuatro;?>>4-5</button>
-                            </td>
-                        </tr>
-                        <tr class="horarios-row">
-                            <td class="hora">
-                                <button class="botonC" onclick="obtenerHor(this)" id="17" <?php echo $cinco;?>>5-6</button>
-                            </td>
-                        </tr>
-                        <tr class="horarios-row">
-                            <td class="hora">
-                                <button class="botonC" onclick="obtenerHor(this)" id="18" <?php echo $seis;?>>6-7</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <h2 class="horarios-header">Horarios</h2>
+            
+            <p>Seleccione su Integrante:
+                <select name="integrante" id="integrante">
+                    <?php 
+                        while ($valores = mysqli_fetch_array($queryIntegrante)) {
+                    ?>
+                        <option value='1'> <?php echo $valores['nombre'] ?> </option>
+                    <?php 
+                        }
+                    ?>
+                </select>
+            </p>
+           <!-- <div class="custom-select" style="width:200px;">
+                <select class="select-selected">
+                    <option value="0">Select car:</option>
+                    <option value="1">Audi</option>
+                    <option value="2">BMW</option>
+                    <option value="3">Citroen</option>
+                    <option value="4">Ford</option>
+                    <option value="5">Honda</option>
+                    <option value="6">Jaguar</option>
+                    <option value="7">Land Rover</option>
+                    <option value="8">Mercedes</option>
+                    <option value="9">Mini</option>
+                    <option value="10">Nissan</option>
+                    <option value="11">Toyota</option>
+                    <option value="12">Volvo</option>
+                </select>
+            </div>-->
+            <table class="horarios-table">
+                <tbody>
+                    <tr class="horarios-row">   
+                        <td class="hora">
+                            <button class="botonC" onclick="obtenerHor(this)" id="9" <?php echo $nueve;?>>9-10</button>
+                        </td>
+                    </tr>
+                    <tr class="horarios-row">
+                        <td class="hora">
+                            <button class="botonC" onclick="obtenerHor(this)" id="10" <?php echo $diez;?>>10-11</button>
+                        </td>
+                    </tr>
+                    <tr class="horarios-row">
+                        <td class="hora">
+                            <button class="botonC" onclick="obtenerHor(this)" id="11" <?php echo $once;?>>11-12</button>
+                        </td>
+                    </tr>
+                    <tr class="horarios-row">
+                        <td class="hora">
+                            <button class="botonC" onclick="obtenerHor(this)" id="12" <?php echo $doce;?>>12-1</button>
+                        </td>
+                    </tr>
+                    <tr class="horarios-row">
+                        <td class="hora">
+                            <button class="botonC" onclick="obtenerHor(this)" id="13" <?php echo $uno;?>>1-2</button>
+                        </td>
+                    </tr>
+                    <tr class="horarios-row">
+                        <td class="hora">
+                            <button class="botonC" onclick="obtenerHor(this)" id="16" <?php echo $cuatro;?>>4-5</button>
+                        </td>
+                    </tr>
+                    <tr class="horarios-row">
+                        <td class="hora">
+                            <button class="botonC" onclick="obtenerHor(this)" id="17" <?php echo $cinco;?>>5-6</button>
+                        </td>
+                    </tr>
+                    <tr class="horarios-row">
+                        <td class="hora">
+                            <button class="botonC" onclick="obtenerHor(this)" id="18" <?php echo $seis;?>>6-7</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
 
                 <button class="button" id="add-button">Agregar cita</button>
             <!-- <button class="button" id="add-button">Agregar cita</button> -->

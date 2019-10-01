@@ -10,7 +10,7 @@
     if($mysqli->connect_errno){
         echo "no conectado";
     }else{
-        echo "conectado -> ";
+        //echo "conectado -> ";
     }
 
     

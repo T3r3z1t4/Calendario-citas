@@ -1,5 +1,8 @@
 <?php
 require ("conexion.php");
+
+    $variable_hr = $_REQUEST['hr'];
+
     $nombre = $_POST['nombre'];
     $motivoCita = $_POST['motivo'];
     $numTel = $_POST['numero'];  
@@ -10,6 +13,7 @@ require ("conexion.php");
     $query = mysqli_query($mysqli,$insertar);
     if($query){
         echo 'datos agregados';
+        echo $variable_hr;
     }else{
         echo 'datos no agregados';
     }
