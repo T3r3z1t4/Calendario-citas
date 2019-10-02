@@ -1,6 +1,6 @@
  <?php
 include("conexion.php");
-    $consulta= "SELECT horario FROM clientes where Fecha LIKE '2019-09-18' ";
+    $consulta= "SELECT horario FROM clientes where Fecha LIKE '2019-10-01' ";
     $query2 = mysqli_query($mysqli,$consulta);
     $nueve= FALSE;
     $diez= FALSE;
@@ -167,25 +167,25 @@ include("conexion.php");
                     </tr>
                 </tbody>
             </table>
-            <button class="button" id="add-button" >Agregar cita</button> 
+            <button class="button" id="add-button" onclick="return validarHor()">Agregar cita</button> 
         </div>
         <!-- <div><input type="text" id="myText" value="Mickey"> </div> -->
         <div class="dialog" id="dialog">  
             <h2 class="dialog-header"> Pedir cita </h2>
-            <form class="form" id="form" action="principal.php" method="POST" >
+            <form name="fvalida" class="form" id="form" action="principal.php" method="POST" onsubmit = "return validacionForm() " >
                 <div class="form-container" align="center" > <!-- formulario  para la cita -->
                     <label class="form-label" for="fecha-cita">Fecha de Cita:</label>
-                    <input  class="input" maxlength="36" type="text" id="fechaId" name="fecha" readonly  >
+                    <input  class="input"  maxlength="36" type="text" id="fechaId" name="fecha" readonly  >
                     <label class="form-label" for="hora-cita">Hora de Cita:</label>
                     <input  class="input" maxlength="36" type="text" id="horaId" name="cita" readonly>
-                    <label class="form-label" for="nombre">Nombre completo</label>
-                    <input class="input" maxlength="36" type="text" id="name"  name="nombre"  >
+                    <label class="form-label"   for="nombre">Nombre completo</label>
+                    <input class="input" min="3" max="25" type="text" id="name"  name="nombre"  tabindex="1" required autofocus >
                     <label class="form-label"  for="motivoC">Motivo de la cita</label>
-                    <input class="input" maxlength="36" type="text" id="cita"  name="motivo">
+                    <input class="input" min="5" max="40" type="text" id="cita"  name="motivo" tabindex="2" required autofocus>
                     <label class="form-label"  for="cel">Número telefonico</label>
-                    <input class="input" type="tel" id="numer" placeholder="Sin lada" name="numero">
+                    <input class="input" type="tel" id="numer" min="7"  max="10" placeholder="Sin lada" name="numero"  tabindex="3" required>
                     <input type="button" value="Cancel" class="button" id="cancel-button"  >
-                    <input type="submit" value="OK" class="button" id="ok-button">
+                    <input type="submit" value="OK" class="button" id="ok-button" >
                 </div>
             </form>
         </div>

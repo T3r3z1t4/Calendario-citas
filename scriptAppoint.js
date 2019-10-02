@@ -5,6 +5,7 @@ $(document).ready(function () {
 	var mes = date.getMonth(); /* Obtiene el numero indicado del mes */
 	var anio= date.getFullYear();
 	var new_year = anio;
+	var fechaCita = date; /* va a guardar la fecha que se escogio para la cita */
 	// Establecer controladores de clic para elementos DOM
 	$(".right-button").click({ date: date, anio}, next_year); /* obtiene el siguiente año */ 
 	$(".left-button").click({ date: date, anio}, prev_year); /* obtiene el el calendario de años anteriores */ 
@@ -210,6 +211,7 @@ function prev_year(event, anio) {
 
 // Controlador de eventos para hacer clic en el botón del nuevo evento
 function new_event(event, date) {
+	
 	var date = event.data.date;
 	var a = date.getFullYear();
 	var m = date.getMonth();
@@ -255,7 +257,7 @@ function new_event(event, date) {
 			break; 			
 	}
 
-	 var fechaCita =  a + "/" + m + "/" + d; //formato año/mes/dia	 hecho por evelyn
+	 fechaCita =  a + "/" + m + "/" + d; //formato año/mes/dia	 hecho por evelyn
 	 document.getElementById('fechaId').value = fechaCita;
 
 
@@ -265,6 +267,8 @@ function new_event(event, date) {
 	// document.getElementById('horaCita').innerHTML = "";//limpiar por eve
 		// Controlador de eventos para el botón ok
 		// $("#ok-button").unbind().click({ date: event.data.date }, function () {
+		// 	  return validacionForm(this);
+		// });
 
 		// 	var date = event.data.date;
 			
@@ -449,26 +453,12 @@ const months = [
 	"November",
 	"December"
 ];
-// $(document).ready(function () {
-// 	$("#hora").click(obtenerHor () {
-// 		//saco el valor accediendo a un input de tipo text y name = nombre2 y lo asigno a uno con name = nombre3 
-// 		$("#hora").val($(".botonC").val('9'));
-// 	});
-// });
+// funcion para obtner la hora
 function obtenerHor(id){
 	
     switch(id){
 		case "9":
-			// document.getElementById('hora').innerHTML = '9-10';
-			//document.getElementsById('name').innerHTML = '9-10';
-			//$("#hora").val(id);
-			//alert($("#hora").val('9'));
-			//document.form.fecha.innerHTML = id;
-			//document.form.hora.value = 9; 
-			//var txt = document.getElementById('hora').value;
-			//document.getElementById('fecha').innerHTML = '9-8';
-			// window.alert(id);
-			document.getElementById('horaId').value = '9-19';
+			document.getElementById('horaId').value = '9-19'; /* asignando un valor al id */
             break;
         case "10":
 			document.getElementById('horaId').value = '10-11';
@@ -493,4 +483,69 @@ function obtenerHor(id){
 			break;
     
 	}
-}   
+}
+/* validacion de los campos del formmulario */
+function validacionForm() {
+
+	var reason = "";
+	var nom = document.getElementById("name");
+	var mot = document.getElementById("cita");
+	var tel = document.getElementById("numer");
+	reason += validateName(nom);
+	reason += validateCita(mot);
+	reason += validatePhone(tel);
+	if (reason != "") {
+		window.alert("Algunos de los campos necesita correción\n" + reason);
+		return false;
+	}
+	return true;
+}
+/* validacion de la caja de nombre */
+function validateName(nombre) {
+	
+	var error = "";
+	var illegalChars = /\W/; // permite letras, números y guiones bajos
+	if (nombre.value == "" || nombre.value == null || (/^\s+$/.test(nombre.value))) {
+		nombre.style.background = 'red';
+		error="La caja para nombre no contiene nada...\n";
+		nombre.focus();
+	}else if ((nombre.length < 3) || (nombre.length > 30)) {
+		nombre.style.background = 'red';
+		error = "El nombre  tiene una longitud incorrecta...\n";
+		nombre.focus();
+	} else if (illegalChars.test(nombre.value)) {
+		nombre.style.background = 'red';
+		error = "El nombre ingresado contiene caracteres ilegales.\n";
+		nombre.focus();
+	} else {
+		nombre.style.background = 'White';
+	}
+	return error;
+}
+function validateCita(cita){
+	var error = "";
+	if (cita.value == 0 || cita.length < 5 || cita.length > 30 ) {
+		cita.style.background = 'reed';
+		error = "Verifique el campo cita, antes de seguir\n"
+	} else {
+		cita.style.background = 'White';
+	}
+	return error;  
+
+}
+function validatePhone(tel) {
+	var error = "";
+	var stripped = tel.value.replace(/[\(\)\.\-\ ]/g, '');
+
+	if (tel.value == "" || tel.value==null) {
+		error = "No ingresó un número de teléfono..\n";
+		tel.style.background = 'red';
+	} else if (isNaN(parseInt(stripped))) {
+		error = "El número de teléfono contiene caracteres ilegales..\n";
+		tel.style.background = 'red';
+	} else if (!(stripped.length == 10)) {
+		error = "El número de teléfono tiene la longitud incorrecta. Asegúrese de incluir un código de área.\n";
+		tel.style.background = 'red';
+	}
+	return error;
+}
