@@ -484,6 +484,9 @@ function obtenerHor(id){
     
 	}
 }
+function validarHor(){
+	
+}
 /* validacion de los campos del formmulario */
 function validacionForm() {
 
