@@ -1,6 +1,14 @@
  <?php
 include("conexion.php");
+<<<<<<< HEAD
     $consulta= "SELECT horario FROM clientes where Fecha LIKE '2019-10-01' ";
+=======
+
+  /*  $conIglesia = "SELECT nombre FROM iglesia;";
+    $result = mysqli_query($mysqli, $conIglesia);*/
+
+    $consulta= "SELECT horario FROM cita where fecha LIKE '2019-09-26';";
+>>>>>>> af14101c6923db6d246b627ac14ab88ca06885a4
     $query2 = mysqli_query($mysqli,$consulta);
     $nueve= FALSE;
     $diez= FALSE;
@@ -19,17 +27,18 @@ include("conexion.php");
     $col5='#026353';
     $col6='#026353';
 
+    
+
+    //obtener integrantes de la iglesia seleccionada
+    $query_integrante = "SELECT nombre FROM integrante WHERE idIglesia=1";
+    $queryIntegrante = mysqli_query($mysqli,$query_integrante);                 
+    
    if($query2){
         while($fila=mysqli_fetch_array($query2)){
             $r=$fila['horario'];
-            // echo "<tr>";
-            // echo "<td>$fila[horario] </td><br>";
-            // echo "<tr>";
             switch ($r) {
             case '9-10':
                 $nueve= 'disabled';
-                $col9='rgb(124, 41, 20)';
-                echo 'nueve';
 				break;
             case '10-11':
                 $diez= 'disabled';
@@ -66,6 +75,7 @@ include("conexion.php");
         echo 'no';
     }
 ?>
+
 <html lang="en">
 <head>
     <meta charset="utf-8">
@@ -76,7 +86,7 @@ include("conexion.php");
 </head>
 
 <body>
-    <div class="content">
+    <div class="content" id="contenedor">
         <div class="appoint-container">
             <div class="appoint">
                 <div class="year-header">
@@ -122,7 +132,36 @@ include("conexion.php");
         <div class="events-container"> <!-- Aqui es donde se se ve el texto de que no hay act -->
         </div> 
         <div class="horarios-container" id="semana">
-            <h2 class="horarios-header"> Horarios</h2>
+            <h2 class="horarios-header">Horarios</h2>
+            
+            <p>Seleccione su Integrante:
+                <select name="integrante" id="integrante">
+                    <?php 
+                        while ($valores = mysqli_fetch_array($queryIntegrante)) {
+                    ?>
+                        <option value='1'> <?php echo $valores['nombre'] ?> </option>
+                    <?php 
+                        }
+                    ?>
+                </select>
+            </p>
+           <!-- <div class="custom-select" style="width:200px;">
+                <select class="select-selected">
+                    <option value="0">Select car:</option>
+                    <option value="1">Audi</option>
+                    <option value="2">BMW</option>
+                    <option value="3">Citroen</option>
+                    <option value="4">Ford</option>
+                    <option value="5">Honda</option>
+                    <option value="6">Jaguar</option>
+                    <option value="7">Land Rover</option>
+                    <option value="8">Mercedes</option>
+                    <option value="9">Mini</option>
+                    <option value="10">Nissan</option>
+                    <option value="11">Toyota</option>
+                    <option value="12">Volvo</option>
+                </select>
+            </div>-->
             <table class="horarios-table">
                 <tbody>
                     <tr class="horarios-row">   
@@ -167,7 +206,13 @@ include("conexion.php");
                     </tr>
                 </tbody>
             </table>
+<<<<<<< HEAD
             <button class="button" id="add-button" onclick="return validarHor()">Agregar cita</button> 
+=======
+
+                <button class="button" id="add-button">Agregar cita</button>
+            <!-- <button class="button" id="add-button">Agregar cita</button> -->
+>>>>>>> af14101c6923db6d246b627ac14ab88ca06885a4
         </div>
         <!-- <div><input type="text" id="myText" value="Mickey"> </div> -->
         <div class="dialog" id="dialog">  
