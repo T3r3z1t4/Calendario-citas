@@ -1,6 +1,6 @@
  <?php
 include("conexion.php");
-    $consulta= "SELECT horario FROM clientes where Fecha LIKE '2019-10-30' ";
+    $consulta= "SELECT horario FROM clientes where Fecha LIKE '2019-10-01' ";
     $query2 = mysqli_query($mysqli,$consulta);
     $nueve= FALSE;
     $diez= FALSE;
