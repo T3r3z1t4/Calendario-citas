@@ -84,65 +84,27 @@ $resultado=$mysqli->query($query);
         <div class="horarios-container" id="semana">
             <h2 class="horarios-header">Horarios</h2>
             
-            <p>Seleccione su Integrante:
-                <select name="integrante" id="integrante">
-                    <?php 
-                        while ($valores = mysqli_fetch_array($queryIntegrante)) {
-                    ?>
-                        <option value='1'> <?php echo $valores['nombre'] ?> </option>
-                    <?php 
-                        }
-                    ?>
-                </select>
-            </p>
+            <form name="fvalida" class="form" id="form" action="appoint.php">
+                <p>Seleccione su Integrante:
+                <select name="cbx_estado" id="cbx_estado">
+					<option value="0">Seleccionar Integrante</option>
+					<?php while($row = $resultado->fetch_assoc()) { ?>
+						<option value="<?php echo $row['idIntegrante']; ?>"><?php echo $row['nombre']; ?></option>
+					<?php } ?>
+				</select>
+                </p>
+                <!--<div>Selecciona Horario : <select name="cbx_municipio" id="cbx_municipio"></select></div>-->
+            </form>
            
             <table class="horarios-table">
-                <tbody>
-                    <tr class="horarios-row">   
-                        <td class="hora">
-                            <button class="botonC"   onclick="obtenerHor('9')" style="background-color:<?php echo $col9;?>"  <?php echo $nueve;?>>9-10</button>
-                        </td>
-                    </tr>
-                    <tr class="horarios-row">
-                        <td class="hora">
-                            <button class="botonC"  onclick="obtenerHor('10')" style="background-color:<?php echo $col10;?>" <?php echo $diez;?>>10-11</button>
-                        </td>
-                    </tr>
-                    <tr class="horarios-row">
-                        <td class="hora">
-                            <button class="botonC" onclick="obtenerHor('11')"  style="background-color:<?php echo $col11;?>" <?php echo $once;?>>11-12</button>
-                        </td>
-                    </tr>
-                    <tr class="horarios-row">
-                        <td class="hora">
-                            <button class="botonC" onclick="obtenerHor('12')"  style="background-color:<?php echo $col12;?>" <?php echo $doce;?>>12-1</button>
-                        </td>
-                    </tr>
-                    <tr class="horarios-row">
-                        <td class="hora">
-                            <button class="botonC" onclick="obtenerHor('13')"  style="background-color:<?php echo $col1;?>" <?php echo $uno;?>>1-2</button>
-                        </td>
-                    </tr>
-                    <tr class="horarios-row">
-                        <td class="hora">
-                            <button class="botonC" onclick="obtenerHor('16')"  style="background-color:<?php echo $col4;?>" <?php echo $cuatro;?>>4-5</button>
-                        </td>
-                    </tr>
-                    <tr class="horarios-row">
-                        <td class="hora">
-                            <button class="botonC" onclick="obtenerHor('17')" style="background-color:<?php echo $col5;?>" <?php echo $cinco;?>>5-6</button>
-                        </td>
-                    </tr>
-                    <tr class="horarios-row">
-                        <td class="hora">
-                            <button class="botonC" onclick="obtenerHor('18')"  style="background-color:<?php echo $col6;?>" <?php echo $seis;?>>6-7</button>
-                        </td>
-                    </tr>
+            <tbody id="inf"> <!--aquí se agrega el resultado de la consulta-->
+                <tr class='horarios-row'><td id='hora'><button class='botonC' onclick= "obtenerHor('9')">9-10</button></td></tr>
                 </tbody>
             </table>
+
             <button class="button" id="add-button" onclick="return validarHor()">Agregar cita</button> 
         </div>
-        <!-- <div><input type="text" id="myText" value="Mickey"> </div> -->
+
         <div class="dialog" id="dialog">  
             <h2 class="dialog-header"> Pedir cita </h2>
             <form name="fvalida" class="form" id="form" action="principal.php" method="POST" onsubmit = "return validacionForm() " >
