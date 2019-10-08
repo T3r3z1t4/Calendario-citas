@@ -1,7 +1,6 @@
- <?php
+<?php
 include("conexion.php");
-    $consulta= "SELECT horario FROM clientes where Fecha LIKE '2019-10-01' ";
-    $query2 = mysqli_query($mysqli,$consulta);
+
     $nueve= FALSE;
     $diez= FALSE;
     $once= FALSE;
@@ -19,53 +18,10 @@ include("conexion.php");
     $col5='#026353';
     $col6='#026353';
 
-    
-
-    //obtener integrantes de la iglesia seleccionada
-    $query_integrante = "SELECT nombre FROM integrante WHERE idIglesia=1";
-    $queryIntegrante = mysqli_query($mysqli,$query_integrante);                 
-    
-   if($query2){
-        while($fila=mysqli_fetch_array($query2)){
-            $r=$fila['horario'];
-            switch ($r) {
-            case '9-10':
-                $nueve= 'disabled';
-				break;
-            case '10-11':
-                $diez= 'disabled';
-                $col10= 'rgb(124, 41, 20)';
-                break;
-            case '11-12':
-                $once= 'disabled';
-                $col11='rgb(124, 41, 20)';
-				break;
-            case '12-13':
-                $doce= 'disabled';
-                $col12='rgb(124, 41, 20)';
-                break;
-            case '13-14':
-                $uno= 'disabled';
-                $col1='rgb(124, 41, 20)';
-				break;
-            case '16-17':
-                $cuatro= 'disabled';
-                $col4='rgb(124, 41, 20)';
-                echo 'cuatro';
-                break;
-            case '17-18':
-                $cinco= 'disabled';
-                $col5='rgb(124, 41, 20)';
-                break;
-            case '18-19':
-                $seis= 'disabled';
-                $col6='rgb(124, 41, 20)';
-				break;
-		}     
-        }
-    }else{
-        echo 'no';
-    }
+//obtener integrantes de la iglesia seleccionada
+$query = "SELECT idIntegrante, nombre FROM integrante WHERE idIglesia=1";
+$resultado=$mysqli->query($query);                  
+  
 ?>
 
 <html lang="en">
@@ -75,6 +31,8 @@ include("conexion.php");
     <meta name="description" content="Calendar">
     <meta name="author" content="Charles Anderson">
     <link rel="stylesheet" href="styleAppoint.css">
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
 </head>
 
 <body>
@@ -137,23 +95,7 @@ include("conexion.php");
                     ?>
                 </select>
             </p>
-           <!-- <div class="custom-select" style="width:200px;">
-                <select class="select-selected">
-                    <option value="0">Select car:</option>
-                    <option value="1">Audi</option>
-                    <option value="2">BMW</option>
-                    <option value="3">Citroen</option>
-                    <option value="4">Ford</option>
-                    <option value="5">Honda</option>
-                    <option value="6">Jaguar</option>
-                    <option value="7">Land Rover</option>
-                    <option value="8">Mercedes</option>
-                    <option value="9">Mini</option>
-                    <option value="10">Nissan</option>
-                    <option value="11">Toyota</option>
-                    <option value="12">Volvo</option>
-                </select>
-            </div>-->
+           
             <table class="horarios-table">
                 <tbody>
                     <tr class="horarios-row">   
@@ -198,13 +140,7 @@ include("conexion.php");
                     </tr>
                 </tbody>
             </table>
-<<<<<<< HEAD
             <button class="button" id="add-button" onclick="return validarHor()">Agregar cita</button> 
-=======
-
-                <button class="button" id="add-button">Agregar cita</button>
-            <!-- <button class="button" id="add-button">Agregar cita</button> -->
->>>>>>> af14101c6923db6d246b627ac14ab88ca06885a4
         </div>
         <!-- <div><input type="text" id="myText" value="Mickey"> </div> -->
         <div class="dialog" id="dialog">  
@@ -231,7 +167,24 @@ include("conexion.php");
     <script src="https://code.jquery.com/jquery-3.2.1.min.js"
         integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous">
     </script>
-    <script src="scriptAppoint.js"></script> 
+    <script src="scriptAppoint.js"></script>
+    
+     <!--script para realizar consulta jQuery-PHP -->
+     <script>
+            $("#cbx_estado").change(function () {
+					
+                    $('#inf').find('option').remove().end().append('<button class="botonC"></button>').val('whatever');
+                    
+                    $("#cbx_estado option:selected").each(function () {
+                        idintegrante = $(this).val();
+                        //alert( idintegrante );
+                        $.post("includes/getIntegrante.php", { idintegrante: idintegrante }, function(data){
+                            $("#inf").html(data);
+                        });            
+                    });
+                })
+    </script>
+    
 </body>
 
 </html>
