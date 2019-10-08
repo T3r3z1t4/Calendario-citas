@@ -6,11 +6,14 @@ $(document).ready(function () {
 	var anio= date.getFullYear();
 	var new_year = anio;
 	var fechaCita = date; /* va a guardar la fecha que se escogio para la cita */
+	var ban2 = 0;
+	var ban = 0; // bandera para verificar si se ha seleccionado una fecha
 	// Establecer controladores de clic para elementos DOM
+	
 	$(".right-button").click({ date: date, anio}, next_year); /* obtiene el siguiente año */ 
 	$(".left-button").click({ date: date, anio}, prev_year); /* obtiene el el calendario de años anteriores */ 
 	$(".month").click({ date: date, mes, anio}, month_click);/* al darle clic en algunos de los meses */
-	$("#add-button").click({ date: date,date }, new_event); /* con el clic en el boton hace el llamado a una nuevo evento */
+	$("#add-button").click({ date: date }, new_event); /* con el clic en el boton hace el llamado a una nuevo evento */
 	// Establecer el mes actual como activo
 	$(".months-row").children().eq(date.getMonth()).addClass("active-month");/* activa el mes que estamos, selecciona getmonth */
 	init_calendar(date);/* inicia  el calendario con la fecha ultima del mes anterior */
@@ -25,6 +28,8 @@ $(document).ready(function () {
 
 // Inicializa el calendario agregando las fechas HTML
 function init_calendar(date) {
+	ban2 = 0;
+	ban = 0; 
 	$(".events-container").hide(250); 
 	$(".tbody").empty();//asignando a la clase tbody, una sentencia vacia, para guardar nuevos datos
 	$(".events-container").empty(); /* asignando a la clase events-container una sentencia vacia */
@@ -87,7 +92,7 @@ function days_in_month(month, year) {
 //Controlador de eventos para cuando se hace clic en una fecha
 function date_click(event) {
 	//document.getElementById('horaCita').innerHTML = "";//limpiar hora  hecho por evelyn
-
+	ban=1;
 	$("#dialog").hide(250); //muestra el apartado de horario
 	$(".events-container").hide(250); // ocultar contendio
 	var datee = new Date(); // Date() imprime  la fecha actual hora y día.
@@ -135,6 +140,10 @@ function date_click(event) {
 		
 	}
 	d = event.data.day;	
+	$(".events-container").empty(); // ocultar contendio
+	var fech = d + "-" + (m+1) + "-" + anio;
+	window.alert(fech);
+	$(".events-container").append(fech);
 	if (m >= mes && m <= (mes + 2)) {
 		if (event.data.day < today && mes == m) {
 			window.alert("Fecha invalida");
@@ -143,7 +152,7 @@ function date_click(event) {
 			$(".active-date").removeClass("active-date");
 			$(this).addClass("active-date");
 			$(".horarios-container").show(250); //muestra el apartado de horario
-			$(".events-container").hide(250); // ocultar contendio
+			$(".events-container").show(250); // ocultar contendio
 		}
 	}
 };
@@ -210,106 +219,80 @@ function prev_year(event, anio) {
 }
 
 // Controlador de eventos para hacer clic en el botón del nuevo evento
-function new_event(event, date) {
-	
-	var date = event.data.date;
-	var a = date.getFullYear();
-	var m = date.getMonth();
-	$(".horarios-container").hide(250);
-	$(".events-container").hide(250);
-	$(".dialog").show(250); // muestra el contenedor para requisitar la cita
-	switch(m){
-		case 0:
-			m = "01";
-			break; 
-		case 1:
-			m = "02";
-			break; 
-		case 2:
-			m = "03";
-			break; 
-		case 3:
-			m = "04";
-			break; 
-		case 4:
-			m = "05";
-			break; 
-		case 5:
-			m = "06";
-			break; 
-		case 6:
-			m = "07";
-			break; 
-		case 7:
-			m = "08";
-			break; 
-		case 8:
-			m = "09";
-			break; 
-		case 9:
-			m = "10";
-			break; 
-		case 10:
-			m = "11";
-			break; 
-		case 11:
-			m = "12";
-			break; 			
+function new_event(event) {
+	if (ban==0){
+		window.alert("Antes de, escoge una fecha para tu cita.");
+		return false;
 	}
+	if (ban2 == 0) {
+		window.alert("Antes de, escoge una hora para tu cita.");
+		return false;
+	}
+	if(ban==1 && ban2==1){
+		var date = event.data.date;
+		var a = date.getFullYear();
+		var m = date.getMonth();
+		$(".horarios-container").hide(250);
+		$(".events-container").hide(250);
+		$(".dialog").show(250); // muestra el contenedor para requisitar la cita
+		switch (m) {
+			case 0:
+				m = "01";
+				break;
+			case 1:
+				m = "02";
+				break;
+			case 2:
+				m = "03";
+				break;
+			case 3:
+				m = "04";
+				break;
+			case 4:
+				m = "05";
+				break;
+			case 5:
+				m = "06";
+				break;
+			case 6:
+				m = "07";
+				break;
+			case 7:
+				m = "08";
+				break;
+			case 8:
+				m = "09";
+				break;
+			case 9:
+				m = "10";
+				break;
+			case 10:
+				m = "11";
+				break;
+			case 11:
+				m = "12";
+				break;
+		}
 
-	 fechaCita =  a + "/" + m + "/" + d; //formato año/mes/dia	 hecho por evelyn
-	 document.getElementById('fechaId').value = fechaCita;
+		fechaCita = a + "/" + m + "/" + d; //formato año/mes/dia	 hecho por evelyn
+		document.getElementById('fechaId').value = fechaCita;
 
+		return false;
 
-	// document.getElementById('fechaCita').innerHTML = fechaCita; // hecho por evelyn
-
-	
-	// document.getElementById('horaCita').innerHTML = "";//limpiar por eve
-		// Controlador de eventos para el botón ok
-		// $("#ok-button").unbind().click({ date: event.data.date }, function () {
-		// 	  return validacionForm(this);
-		// });
-
-		// 	var date = event.data.date;
-			
-		// 	var name = $("#name").val().trim();
-		// 	var motCita = $("#cita").val().trim();
-		// 	var numeroT = parseInt($("#numer").val().trim());
-		// 	// window.alert("mi nombre es"+name.length+"motivo de la cita"+motCita.length+"numero telefonico"+numeroT.length);
-		// 	if (name.length > 0 && motCita.length > 0 && numeroT>0)
-		// 	{
-		// 		$("#dialog").hide(250);
-		// 		console.log("new event");
-		// 		new_event_json(name, motCita, numeroT, date, day);
-		// 		date.setDate(day);
-		// 		init_calendar(date);
-		// 	}
-		// 	else {
-		// 		window.alert("Rebice que no tiene todos los campos contestados");
-		// 	}	
-			
-		// });
-	// }	
+	}else {
+		window.alert("Por favor, verifica sí ya escogistes fecha de cita y horario");
+		return false;
+	}
+	return true;
+		
 }
-
-// Adds a json event to event_data
-// function new_event_json(name, motCita, numeroT, date, day) {
-// 	var event = {
-// 		"occasion": name,
-// 		"invited_count": count,
-// 		"year": date.getFullYear(),
-// 		"month": date.getMonth() + 1,
-// 		"day": day
-// 	};
-// 	event_data["events"].push(event);
-// }
-
 // Mostrar todos los eventos de la fecha seleccionada en vistas de tarjeta
 function show_events(events, month, day) {
 	// limpiar de datos los dos container
 	$(".events-container").empty(); /*  */
 	// $(".events-container").show(250);
 	 console.log(event_data["events"]);
+	// var date = event.data.date;
 	// Si no hay eventos para esta fecha, notifique al usuario
 	if (events.length === 0) {
 		var event_card = $("<div class='event-card'></div>");
@@ -458,7 +441,7 @@ function obtenerHor(id){
 	
     switch(id){
 		case "9":
-			document.getElementById('horaId').value = '9-19'; /* asignando un valor al id */
+			document.getElementById('horaId').value = '9-10'; /* asignando un valor al id */
             break;
         case "10":
 			document.getElementById('horaId').value = '10-11';
@@ -467,29 +450,26 @@ function obtenerHor(id){
 			document.getElementById('horaId').value = '11-12';
             break;
         case "12":
-			document.getElementById('horaId').value = "12-01";
+			document.getElementById('horaId').value = "12-13";
             break
         case "13":
-			document.getElementById('horaId').value = "01-02";
+			document.getElementById('horaId').value = "13-14";
             break;
         case "16":
-			document.getElementById('horaId').value = "04-05";
+			document.getElementById('horaId').value = "16-17";
             break;
         case "17":
-			document.getElementById('horaId').value = "05-06";
+			document.getElementById('horaId').value = "17-18";
 			break;
 		case "18":
-			document.getElementById('horaId').value = "06-07";
+			document.getElementById('horaId').value = "18-19";
 			break;
     
 	}
 }
-function validarHor(){
-	
-}
+
 /* validacion de los campos del formmulario */
 function validacionForm() {
-
 	var reason = "";
 	var nom = document.getElementById("name");
 	var mot = document.getElementById("cita");
@@ -507,7 +487,7 @@ function validacionForm() {
 function validateName(nombre) {
 	
 	var error = "";
-	var illegalChars = /\W/; // permite letras, números y guiones bajos
+	// var illegalChars = /\W/; // permite letras, números y guiones bajos
 	if (nombre.value == "" || nombre.value == null || (/^\s+$/.test(nombre.value))) {
 		nombre.style.background = 'red';
 		error="La caja para nombre no contiene nada...\n";
@@ -516,13 +496,14 @@ function validateName(nombre) {
 		nombre.style.background = 'red';
 		error = "El nombre  tiene una longitud incorrecta...\n";
 		nombre.focus();
-	} else if (illegalChars.test(nombre.value)) {
-		nombre.style.background = 'red';
-		error = "El nombre ingresado contiene caracteres ilegales.\n";
-		nombre.focus();
-	} else {
-		nombre.style.background = 'White';
-	}
+	}else {
+			nombre.style.background = 'White';
+		}
+	// } else if (illegalChars.test(nombre.value)) {
+	// 	nombre.style.background = 'red';
+	// 	error = "El nombre ingresado contiene caracteres ilegales.\n";
+	// 	nombre.focus();
+	// } 
 	return error;
 }
 function validateCita(cita){
@@ -551,4 +532,31 @@ function validatePhone(tel) {
 		tel.style.background = 'red';
 	}
 	return error;
+}
+// Obtener referencia a botones
+// Recuerda: el punto . indica clases
+const botones = document.querySelectorAll(".botonC");
+// Definir función y evitar definirla de manera anónima
+const cuandoSeHaceClick = function (evento) {
+	// Recuerda, this es el elemento
+	// window.alert("El texto que tiene es: ", this.innerText);
+	ban2=1;
+}
+// botones es un arreglo así que lo recorremos
+botones.forEach(boton => {
+	//Agregar listener
+	boton.addEventListener("click", cuandoSeHaceClick);
+});
+
+
+function botonCancelar(){
+	$("#dialog").hide(250);
+	$(".horarios-container").show(250);
+	ban=0;
+	ban2=0;
+	document.getElementById('fechaId').innerHTML = "";
+	document.getElementById('horaId').innerHTML = "";
+	document.getElementById('name').innerHTML = "";
+	document.getElementById('cita').innerHTML = "";
+	document.getElementById('numer').innerHTML = "";
 }
