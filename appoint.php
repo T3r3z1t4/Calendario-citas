@@ -198,13 +198,7 @@ include("conexion.php");
                     </tr>
                 </tbody>
             </table>
-<<<<<<< HEAD
             <button class="button" id="add-button" onclick="return validarHor()">Agregar cita</button> 
-=======
-
-                <button class="button" id="add-button">Agregar cita</button>
-            <!-- <button class="button" id="add-button">Agregar cita</button> -->
->>>>>>> af14101c6923db6d246b627ac14ab88ca06885a4
         </div>
         <!-- <div><input type="text" id="myText" value="Mickey"> </div> -->
         <div class="dialog" id="dialog">  
