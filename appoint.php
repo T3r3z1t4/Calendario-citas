@@ -100,7 +100,10 @@ $resultado=$mysqli->query($query);
                 <tbody id="inf"> <!--aquí se agrega el resultado de la consulta-->
                 </tbody>
             </table>
+<<<<<<< HEAD
+=======
 
+>>>>>>> 6ed347027e4b0a078f8d3a89a2f8fa88e0ebba55
             <button class="button" id="add-button" onclick="return validarHor()">Agregar cita</button> 
         </div>
 
