@@ -3,8 +3,10 @@
 	require ('../conexion.php');
 	
     $idIntegrante = $_POST['idintegrante'];
-    
-    $queryM = "SELECT horario FROM cita where idIntegrante=$idIntegrante";
+    $fechaSelec = $_POST['fechaSelec'];
+
+    $queryM = "SELECT horario FROM cita where idIntegrante=$idIntegrante and fecha='$fechaSelec'";
+
 
     $resultadoM = $mysqli->query($queryM);
     
@@ -18,40 +20,40 @@
                    "<tr class='horarios-row'><td id='hora'><button class='botonC' onclick=\"obtenerHor('16')\">16-17</button></td></tr>",
                    "<tr class='horarios-row'><td id='hora'><button class='botonC' onclick=\"obtenerHor('17')\">17-18</button></td></tr>",
                    "<tr class='horarios-row'><td id='hora'><button class='botonC' onclick=\"obtenerHor('18')\">18-19</button></td></tr>");
-    $i = 0;
-
+  
+    /*$array = array("9-","10-","11-","12-","13-","16-","17-","18");*/
+    
 	while($rowM = $resultadoM->fetch_assoc())
 	{
         //$select.= "<option value='".$rowM['idCita']."'>".$rowM['horario']."</option>";
         if($rowM){
 
-        switch ($rowM['horario']) {
-            case '9-10':
-                $array[$i] = "";
+            switch ($rowM['horario']) {
+                case '09-10':
+                    $array[0] = "";
+                    break;
+                case '10-11':
+                    $array[1] = "";
+                    break;
+                case '11-12':
+                    $array[2] = "";
                 break;
-            case '10-11':
-                $array[$i] = "";
-                break;
-            case '11-12':
-                $array[$i] = "";
-            break;
-            case '12-13':
-                $array[$i] = "";
-                break;
-            case '13-14':
-                $array[$i] = "";
-                break;
-            case '16-17':
-                $array[$i] = "";
-                break;
-            case '17-18':
-                $array[$i] = "";
-                break;
-            case '18-19':
-                $array[$i] = "";
-                break;
+                case '12-13':
+                    $array[3] = "";
+                    break;
+                case '13-14':
+                    $array[4] = "";
+                    break;
+                case '16-17':
+                    $array[5] = "";
+                    break;
+                case '17-18':
+                    $array[6] = "";
+                    break;
+                case '18-19':
+                    $array[7] = "";
+                    break;
             }
-            $i++;
         }
     }
     
@@ -60,7 +62,7 @@
     while($i < 8){
         $cadena = $array[$i];
         if(strlen($cadena) > 0){
-            $select.= $array[$i];
+            $select.= $cadena;
         }
         $i++;
     }

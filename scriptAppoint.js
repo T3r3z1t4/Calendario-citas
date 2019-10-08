@@ -141,8 +141,8 @@ function date_click(event) {
 	}
 	d = event.data.day;	
 	$(".events-container").empty(); // ocultar contendio
-	var fech = d + "-" + (m+1) + "-" + anio;
-	window.alert(fech);
+	var fech = anio + "-" + (m+1) + "-" + d;
+	//window.alert(fech);
 	$(".events-container").append(fech);
 	if (m >= mes && m <= (mes + 2)) {
 		if (event.data.day < today && mes == m) {

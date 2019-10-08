@@ -79,7 +79,7 @@ $resultado=$mysqli->query($query);
                 </table>
             </div>
         </div>
-        <div class="events-container"> <!-- Aqui es donde se se ve el texto de que no hay act -->
+        <div class="events-container" id="fechaSelec"> <!-- Aqui es donde se se ve el texto de que no hay act -->
         </div> 
         <div class="horarios-container" id="semana">
             <h2 class="horarios-header">Horarios</h2>
@@ -97,8 +97,7 @@ $resultado=$mysqli->query($query);
             </form>
            
             <table class="horarios-table">
-            <tbody id="inf"> <!--aquí se agrega el resultado de la consulta-->
-                <tr class='horarios-row'><td id='hora'><button class='botonC' onclick= "obtenerHor('9')">9-10</button></td></tr>
+                <tbody id="inf"> <!--aquí se agrega el resultado de la consulta-->
                 </tbody>
             </table>
 
@@ -135,12 +134,14 @@ $resultado=$mysqli->query($query);
      <script>
             $("#cbx_estado").change(function () {
 					
-                    $('#inf').find('option').remove().end().append('<button class="botonC"></button>').val('whatever');
+                    //$('#inf').find('option').remove().end().append('<button class="botonC"></button>').val('whatever');
                     
                     $("#cbx_estado option:selected").each(function () {
                         idintegrante = $(this).val();
+                        fechaSelec = $("#fechaSelec").html();
+                        //alert($("#fechaSelec").html());
                         //alert( idintegrante );
-                        $.post("includes/getIntegrante.php", { idintegrante: idintegrante }, function(data){
+                        $.post("includes/getIntegrante.php", { idintegrante: idintegrante, fechaSelec: fechaSelec }, function(data){
                             $("#inf").html(data);
                         });            
                     });
