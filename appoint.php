@@ -85,7 +85,7 @@ $resultado=$mysqli->query($query);
             <h2 class="horarios-header">Horarios</h2>
             
             <form name="fvalida" class="form" id="form" action="appoint.php">
-                <p>Seleccione su Integrante:
+                <p class="ps">Seleccione su Integrante:
                 <select name="cbx_estado" id="cbx_estado">
 					<option value="0">Seleccionar Integrante</option>
 					<?php while($row = $resultado->fetch_assoc()) { ?>
@@ -100,10 +100,6 @@ $resultado=$mysqli->query($query);
                 <tbody id="inf"> <!--aquí se agrega el resultado de la consulta-->
                 </tbody>
             </table>
-<<<<<<< HEAD
-=======
-
->>>>>>> 6ed347027e4b0a078f8d3a89a2f8fa88e0ebba55
             <button class="button" id="add-button" onclick="return validarHor()">Agregar cita</button> 
         </div>
 

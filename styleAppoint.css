@@ -76,8 +76,8 @@
 	color:#fff;
     position:relative;
     text-align: center;
-	padding-bottom:10px; /* es el espacio entre el contenido del elemento y su borde de abajo */
-	padding-top:10px; /* es el espacio entre el contenido del elemento y su borde hacia arriba */
+	padding-bottom:8px; /* es el espacio entre el contenido del elemento y su borde de abajo */
+	padding-top:8px; /* es el espacio entre el contenido del elemento y su borde hacia arriba */
 }
 
 /* .botonC:hover, .botonC:active, .botonC:focus {
@@ -317,14 +317,13 @@ margin-top: 40px;
         padding: 0.5rem 1.5rem;
     }
 } 
-
-/* .form-label {
-    display: block;
-    text-align: center;
-}
-
-form[class="form"] {
-    display: block;
-    text-align: center;
-
+/* p{
+    color:red;
 } */
+ .horarios-container p{
+    font-family: Helvetica;
+    text-align: center;
+    position: relative; 
+    color:rgb(15, 80, 7); 
+    top: -20px;
+ } 
