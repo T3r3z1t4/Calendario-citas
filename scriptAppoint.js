@@ -558,6 +558,8 @@ botones.forEach(boton => {
 function botonCancelar(){
 	$("#dialog").hide(250);
 	$(".horarios-container").show(250);
+	//$(".horariosss").show(250);
+	//$(".horariosss").show(250);
 	ban=0;
 	ban2=0;
 	document.getElementById('fechaId').innerHTML = "";

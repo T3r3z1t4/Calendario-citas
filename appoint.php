@@ -83,7 +83,6 @@ $resultado=$mysqli->query($query);
         </div> 
         <div class="horarios-container" id="semana">
             <h2 class="horarios-header">Horarios</h2>
-            
             <form name="fvalida" class="form" id="form" action="appoint.php">
                 <p class="ps">Seleccione su Integrante:
                 <select name="cbx_estado" id="cbx_estado">
@@ -95,11 +94,12 @@ $resultado=$mysqli->query($query);
                 </p>
                 <!--<div>Selecciona Horario : <select name="cbx_municipio" id="cbx_municipio"></select></div>-->
             </form>
-           
+           <div class="horariosss" >
             <table class="horarios-table">
                 <tbody id="inf"> <!--aquí se agrega el resultado de la consulta-->
                 </tbody>
             </table>
+            </div>
             <button class="button" id="add-button" onclick="return validarHor()">Agregar cita</button> 
         </div>
 
@@ -117,7 +117,7 @@ $resultado=$mysqli->query($query);
                     <input class="input" min="5" max="40" type="text" id="cita"  name="motivo" tabindex="2" required autofocus>
                     <label class="form-label"  for="cel">Número telefonico</label>
                     <input class="input" type="tel" id="numer" min="7"  max="10" placeholder="Sin lada" name="numero"  tabindex="3" required>
-                    <input type="button" value="Cancel" class="button" id="cancel-button"  >
+                    <input type="button" value="Cancel" class="button" id="cancel-button" onclick="botonCancelar();" >
                     <input type="submit" value="OK" class="button" id="ok-button" >
                 </div>
             </form>
