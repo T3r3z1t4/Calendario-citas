@@ -12,7 +12,7 @@
     
     $select = "";
 
-    $array = array("<tr class='horarios-row'><td id='hora'><button class='botonC' onclick=\"obtenerHor('9')\">9-10</button></td></tr>",
+    $array = array("<tr class='horarios-row'><td id='hora'><button class='botonC' onclick=\"obtenerHor('9')\">09-10</button></td></tr>",
                    "<tr class='horarios-row'><td id='hora'><button class='botonC' onclick=\"obtenerHor('10')\">10-11</button></td></tr>",
                    "<tr class='horarios-row'><td id='hora'><button class='botonC' onclick=\"obtenerHor('11')\">11-12</button></td></tr>",
                    "<tr class='horarios-row'><td id='hora'><button class='botonC' onclick=\"obtenerHor('12')\">12-13</button></td></tr>",

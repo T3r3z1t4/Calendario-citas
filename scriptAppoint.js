@@ -222,11 +222,11 @@ function new_event(event) {
 		window.alert("Antes de, escoge una fecha para tu cita.");
 		return false;
 	}
-	if (ban2 == 0) {
+	/*if (ban2 == 0) {
 		window.alert("Antes de, escoge una hora para tu cita.");
 		return false;
-	}
-	if(ban==1 && ban2==1){
+	}*/
+	if(ban==1){
 		var date = event.data.date;
 		var a = date.getFullYear();
 		var m = date.getMonth();
@@ -274,6 +274,8 @@ function new_event(event) {
 
 		fechaCita = a + "/" + m + "/" + d; //formato año/mes/dia	 hecho por evelyn
 		document.getElementById('fechaId').value = fechaCita;
+		//document.getElementById('lider').value = fechaCita;
+
 
 		return false;
 
@@ -439,8 +441,7 @@ function obtenerHor(id){
 	
     switch(id){
 		case "9":
-			document.getElementById('horaId').value = '9-10'; /* asignando un valor al id */
-			ban2=1;
+			document.getElementById('horaId').value = '09-10'; /* asignando un valor al id */
             break;
         case "10":
 			document.getElementById('horaId').value = '10-11';

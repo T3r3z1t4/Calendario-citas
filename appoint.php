@@ -107,10 +107,12 @@ $resultado=$mysqli->query($query);
             <h2 class="dialog-header"> Pedir cita </h2>
             <form name="fvalida" class="form" id="form" action="principal.php" method="POST" onsubmit = "return validacionForm() " >
                 <div class="form-container" align="center" > <!-- formulario  para la cita -->
+                    <label class="form-label" for="lider-cita">Lider:</label>
+                    <input class="input"  maxlength="36" type="text" id="lider" name="lider" readonly>
                     <label class="form-label" for="fecha-cita">Fecha de Cita:</label>
-                    <input  class="input"  maxlength="36" type="text" id="fechaId" name="fecha" readonly  >
+                    <input class="input"  maxlength="36" type="text" id="fechaId" name="fecha" readonly>
                     <label class="form-label" for="hora-cita">Hora de Cita:</label>
-                    <input  class="input" maxlength="36" type="text" id="horaId" name="cita" readonly>
+                    <input class="input" maxlength="36" type="text" id="horaId" name="cita" readonly>
                     <label class="form-label"   for="nombre">Nombre completo</label>
                     <input class="input" min="3" max="25" type="text" id="name"  name="nombre"  tabindex="1" required autofocus >
                     <label class="form-label"  for="motivoC">Motivo de la cita</label>
@@ -144,6 +146,9 @@ $resultado=$mysqli->query($query);
                             $("#inf").html(data);
                         });            
                     });
+
+                    $('#lider').val($("#cbx_estado option:selected").text());
+
                 })
     </script>
     
