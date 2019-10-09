@@ -142,8 +142,6 @@ function date_click(event) {
 	d = event.data.day;	
 	$(".events-container").empty(); // ocultar contendio
 	var fech = anio + "-" + (m+1) + "-" + d;
-	//window.alert(fech);
-	$(".events-container").append(fech);
 	if (m >= mes && m <= (mes + 2)) {
 		if (event.data.day < today && mes == m) {
 			window.alert("Fecha invalida");
@@ -447,24 +445,31 @@ function obtenerHor(id){
             break;
         case "10":
 			document.getElementById('horaId').value = '10-11';
+			ban2 = 1;
             break;
         case "11":
 			document.getElementById('horaId').value = '11-12';
+			ban2 = 1;
             break;
         case "12":
 			document.getElementById('horaId').value = "12-13";
+			ban2 = 1;
             break
         case "13":
 			document.getElementById('horaId').value = "13-14";
+			ban2 = 1;
             break;
         case "16":
 			document.getElementById('horaId').value = "16-17";
+			ban2 = 1;
             break;
         case "17":
 			document.getElementById('horaId').value = "17-18";
+			ban2 = 1;
 			break;
 		case "18":
 			document.getElementById('horaId').value = "18-19";
+			ban2 = 1; 	
 			break;
     
 	}
